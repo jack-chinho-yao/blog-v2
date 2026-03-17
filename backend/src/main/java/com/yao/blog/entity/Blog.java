@@ -54,10 +54,6 @@ public class Blog extends BaseEntity {
     @Builder.Default
     private boolean recommend = false;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "type_id")
-    private Type type;
-
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "t_blog_tag",

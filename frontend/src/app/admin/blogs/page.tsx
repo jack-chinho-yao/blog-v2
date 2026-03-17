@@ -45,7 +45,7 @@ export default function AdminBlogsPage() {
           <thead className="bg-gray-50">
             <tr>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Title</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Type</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Tags</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Published</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Views</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Updated</th>
@@ -56,7 +56,7 @@ export default function AdminBlogsPage() {
             {blogs?.content.map((blog) => (
               <tr key={blog.id} className="hover:bg-gray-50">
                 <td className="px-6 py-4 text-sm text-gray-800">{blog.title}</td>
-                <td className="px-6 py-4 text-sm text-gray-500">{blog.type?.name}</td>
+                <td className="px-6 py-4 text-sm text-gray-500">{blog.tags?.map(t => t.name).join(', ')}</td>
                 <td className="px-6 py-4">
                   <span className={`text-xs px-2 py-1 rounded ${blog.recommend ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'}`}>
                     {blog.recommend ? 'Yes' : 'Draft'}

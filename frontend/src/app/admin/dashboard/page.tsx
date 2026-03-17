@@ -65,10 +65,6 @@ export default function DashboardPage() {
           <h3 className="text-lg font-semibold text-gray-800">Manage Blogs</h3>
           <p className="text-gray-500 text-sm mt-1">Create, edit, and delete blog posts</p>
         </Link>
-        <Link href="/admin/types" className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition">
-          <h3 className="text-lg font-semibold text-gray-800">Manage Categories</h3>
-          <p className="text-gray-500 text-sm mt-1">Organize posts by category</p>
-        </Link>
         <Link href="/admin/tags" className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition">
           <h3 className="text-lg font-semibold text-gray-800">Manage Tags</h3>
           <p className="text-gray-500 text-sm mt-1">Add and manage blog tags</p>

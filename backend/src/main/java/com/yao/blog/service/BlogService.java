@@ -5,16 +5,13 @@ import com.yao.blog.dto.response.ArchiveResponse;
 import com.yao.blog.dto.response.BlogResponse;
 import com.yao.blog.dto.response.BlogSummaryResponse;
 import com.yao.blog.dto.response.TagResponse;
-import com.yao.blog.dto.response.TypeResponse;
 import com.yao.blog.dto.response.UserResponse;
 import com.yao.blog.entity.Blog;
 import com.yao.blog.entity.Tag;
-import com.yao.blog.entity.Type;
 import com.yao.blog.entity.User;
 import com.yao.blog.exception.ResourceNotFoundException;
 import com.yao.blog.repository.BlogRepository;
 import com.yao.blog.repository.TagRepository;
-import com.yao.blog.repository.TypeRepository;
 import com.yao.blog.repository.UserRepository;
 import com.yao.blog.security.CustomUserDetails;
 import com.yao.blog.util.MarkdownUtils;
@@ -37,7 +34,6 @@ import java.util.stream.Collectors;
 public class BlogService {
 
     private final BlogRepository blogRepository;
-    private final TypeRepository typeRepository;
     private final TagRepository tagRepository;
     private final UserRepository userRepository;
 
@@ -77,12 +73,6 @@ public class BlogService {
                 .stream()
                 .map(this::toBlogSummaryResponse)
                 .collect(Collectors.toList());
-    }
-
-    @Transactional(readOnly = true)
-    public Page<BlogSummaryResponse> listBlogsByType(Long typeId, Pageable pageable) {
-        return blogRepository.findByTypeId(typeId, pageable)
-                .map(this::toBlogSummaryResponse);
     }
 
     @Transactional(readOnly = true)
@@ -158,10 +148,6 @@ public class BlogService {
         blog.setPublished(request.isPublished());
         blog.setRecommend(request.isRecommend());
 
-        Type type = typeRepository.findByIdAndDeletedFalse(request.getTypeId())
-                .orElseThrow(() -> new ResourceNotFoundException("Type", request.getTypeId()));
-        blog.setType(type);
-
         if (request.getTagIds() != null && !request.getTagIds().isEmpty()) {
             List<Tag> tags = request.getTagIds().stream()
                     .map(tagId -> tagRepository.findByIdAndDeletedFalse(tagId)
@@ -201,7 +187,6 @@ public class BlogService {
                 .commentable(blog.isCommentable())
                 .published(blog.isPublished())
                 .recommend(blog.isRecommend())
-                .type(blog.getType() != null ? toTypeResponse(blog.getType()) : null)
                 .tags(blog.getTags().stream().map(this::toTagResponse).collect(Collectors.toList()))
                 .user(blog.getUser() != null ? toUserResponse(blog.getUser()) : null)
                 .createdAt(blog.getCreatedAt())
@@ -218,19 +203,10 @@ public class BlogService {
                 .description(blog.getDescription())
                 .views(blog.getViews())
                 .recommend(blog.isRecommend())
-                .type(blog.getType() != null ? toTypeResponse(blog.getType()) : null)
                 .tags(blog.getTags().stream().map(this::toTagResponse).collect(Collectors.toList()))
                 .user(blog.getUser() != null ? toUserResponse(blog.getUser()) : null)
                 .createdAt(blog.getCreatedAt())
                 .updatedAt(blog.getUpdatedAt())
-                .build();
-    }
-
-    private TypeResponse toTypeResponse(Type type) {
-        return TypeResponse.builder()
-                .id(type.getId())
-                .name(type.getName())
-                .blogCount(type.getBlogs() != null ? type.getBlogs().stream().filter(b -> !b.isDeleted()).count() : 0)
                 .build();
     }
 

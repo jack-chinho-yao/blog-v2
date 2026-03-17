@@ -4,7 +4,6 @@ import type {
   BlogResponse,
   BlogSummaryResponse,
   BlogRequest,
-  TypeResponse,
   TagResponse,
   CommentResponse,
   CommentRequest,
@@ -90,10 +89,6 @@ class ApiClient {
     return this.request(`/api/blogs/recommend?size=${size}`);
   }
 
-  async getBlogsByType(typeId: number, page = 0): Promise<Page<BlogSummaryResponse>> {
-    return this.request(`/api/blogs/type/${typeId}?page=${page}`);
-  }
-
   async getBlogsByTag(tagId: number, page = 0): Promise<Page<BlogSummaryResponse>> {
     return this.request(`/api/blogs/tag/${tagId}?page=${page}`);
   }
@@ -104,15 +99,6 @@ class ApiClient {
 
   async getBlogCount(): Promise<number> {
     return this.request('/api/blogs/count');
-  }
-
-  // Types
-  async getTypes(): Promise<TypeResponse[]> {
-    return this.request('/api/types');
-  }
-
-  async getTopTypes(size = 6): Promise<TypeResponse[]> {
-    return this.request(`/api/types/top?size=${size}`);
   }
 
   // Tags
@@ -161,25 +147,6 @@ class ApiClient {
 
   async adminDeleteBlog(id: number): Promise<void> {
     return this.request(`/api/admin/blogs/${id}`, { method: 'DELETE' });
-  }
-
-  // Admin - Types
-  async adminCreateType(name: string): Promise<TypeResponse> {
-    return this.request('/api/admin/types', {
-      method: 'POST',
-      body: JSON.stringify({ name }),
-    });
-  }
-
-  async adminUpdateType(id: number, name: string): Promise<TypeResponse> {
-    return this.request(`/api/admin/types/${id}`, {
-      method: 'PUT',
-      body: JSON.stringify({ name }),
-    });
-  }
-
-  async adminDeleteType(id: number): Promise<void> {
-    return this.request(`/api/admin/types/${id}`, { method: 'DELETE' });
   }
 
   // Admin - Tags

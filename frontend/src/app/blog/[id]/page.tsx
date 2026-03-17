@@ -34,11 +34,6 @@ export default async function BlogPage({ params }: { params: Promise<{ id: strin
           <span>{blog.user?.nickname}</span>
           <span>{new Date(blog.createdAt).toLocaleDateString()}</span>
           <span>{blog.views} views</span>
-          {blog.type && (
-            <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs">
-              {blog.type.name}
-            </span>
-          )}
         </div>
         {blog.tags?.length > 0 && (
           <div className="flex gap-2 mt-3">

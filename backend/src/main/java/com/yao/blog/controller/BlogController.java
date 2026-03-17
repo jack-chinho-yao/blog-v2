@@ -52,14 +52,6 @@ public class BlogController {
         return ResponseEntity.ok(blogService.listRecommendBlogs(size));
     }
 
-    @GetMapping("/type/{typeId}")
-    @Operation(summary = "List blogs by type")
-    public ResponseEntity<Page<BlogSummaryResponse>> listBlogsByType(
-            @PathVariable Long typeId,
-            @PageableDefault(size = 8, sort = "updatedAt", direction = Sort.Direction.DESC) Pageable pageable) {
-        return ResponseEntity.ok(blogService.listBlogsByType(typeId, pageable));
-    }
-
     @GetMapping("/tag/{tagId}")
     @Operation(summary = "List blogs by tag")
     public ResponseEntity<Page<BlogSummaryResponse>> listBlogsByTag(

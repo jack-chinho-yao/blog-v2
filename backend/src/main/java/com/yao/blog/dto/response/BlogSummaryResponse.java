@@ -19,7 +19,6 @@ public class BlogSummaryResponse {
     private String description;
     private Integer views;
     private boolean recommend;
-    private TypeResponse type;
     private List<TagResponse> tags;
     private UserResponse user;
     private LocalDateTime createdAt;

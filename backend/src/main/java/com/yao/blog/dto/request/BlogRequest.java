@@ -1,7 +1,6 @@
 package com.yao.blog.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.util.List;
@@ -20,9 +19,6 @@ public class BlogRequest {
     private String flag;
 
     private String description;
-
-    @NotNull(message = "Type is required")
-    private Long typeId;
 
     private List<Long> tagIds;
 

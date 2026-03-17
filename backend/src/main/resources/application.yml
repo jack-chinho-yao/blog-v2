@@ -32,7 +32,7 @@ server:
 
 # JWT
 jwt:
-  secret: ${JWT_SECRET:your-256-bit-secret-key-for-jwt-token-signing-replace-in-production}
+  secret: ${JWT_SECRET:dGhpcyBpcyBhIDI1NiBiaXQgc2VjcmV0IGtleSBmb3Igand0IHRva2VuIHNpZ25pbmc=}
   access-token-expiration: 900000       # 15 minutes
   refresh-token-expiration: 604800000   # 7 days
 

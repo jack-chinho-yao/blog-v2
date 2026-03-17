@@ -4,7 +4,7 @@ backend/*.jar
 backend/.mvn/
 
 # Frontend
-frontend/node_modules/
+node_modules/
 frontend/.next/
 frontend/out/
 

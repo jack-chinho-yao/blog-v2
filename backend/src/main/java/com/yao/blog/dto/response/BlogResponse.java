@@ -24,7 +24,6 @@ public class BlogResponse {
     private boolean commentable;
     private boolean published;
     private boolean recommend;
-    private TypeResponse type;
     private List<TagResponse> tags;
     private UserResponse user;
     private LocalDateTime createdAt;

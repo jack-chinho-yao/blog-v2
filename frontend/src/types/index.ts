@@ -14,12 +14,6 @@ export interface AuthResponse {
   user: UserResponse;
 }
 
-export interface TypeResponse {
-  id: number;
-  name: string;
-  blogCount: number;
-}
-
 export interface TagResponse {
   id: number;
   name: string;
@@ -34,7 +28,6 @@ export interface BlogSummaryResponse {
   description: string;
   views: number;
   recommend: boolean;
-  type: TypeResponse;
   tags: TagResponse[];
   user: UserResponse;
   createdAt: string;
@@ -94,7 +87,6 @@ export interface BlogRequest {
   firstPicture?: string;
   flag?: string;
   description?: string;
-  typeId: number;
   tagIds?: number[];
   appreciation: boolean;
   shareStatement: boolean;

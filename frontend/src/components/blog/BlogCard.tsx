@@ -19,14 +19,6 @@ export default function BlogCard({ blog }: BlogCardProps) {
       )}
       <div className="p-6">
         <div className="flex items-center gap-2 mb-3">
-          {blog.type && (
-            <Link
-              href={`/types?id=${blog.type.id}`}
-              className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded"
-            >
-              {blog.type.name}
-            </Link>
-          )}
           {blog.tags?.map((tag) => (
             <Link
               key={tag.id}

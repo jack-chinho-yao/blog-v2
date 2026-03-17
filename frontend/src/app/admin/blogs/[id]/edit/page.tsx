@@ -4,14 +4,13 @@ import { useState, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import { isLoggedIn } from '@/lib/auth';
 import { api } from '@/lib/api';
-import type { TypeResponse, TagResponse, BlogRequest } from '@/types';
+import type { TagResponse, BlogRequest } from '@/types';
 
 export default function EditBlogPage() {
   const router = useRouter();
   const params = useParams();
   const id = Number(params.id);
 
-  const [types, setTypes] = useState<TypeResponse[]>([]);
   const [tags, setTags] = useState<TagResponse[]>([]);
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState<BlogRequest>({
@@ -20,7 +19,6 @@ export default function EditBlogPage() {
     firstPicture: '',
     flag: '',
     description: '',
-    typeId: 0,
     tagIds: [],
     appreciation: false,
     shareStatement: false,
@@ -32,11 +30,9 @@ export default function EditBlogPage() {
   useEffect(() => {
     if (!isLoggedIn()) { router.push('/admin/login'); return; }
     Promise.all([
-      api.getTypes(),
       api.getTags(),
       api.adminGetBlog(id),
-    ]).then(([typesData, tagsData, blog]) => {
-      setTypes(typesData);
+    ]).then(([tagsData, blog]) => {
       setTags(tagsData);
       setForm({
         title: blog.title,
@@ -44,7 +40,6 @@ export default function EditBlogPage() {
         firstPicture: blog.firstPicture || '',
         flag: blog.flag || '',
         description: blog.description || '',
-        typeId: blog.type?.id || 0,
         tagIds: blog.tags?.map((t) => t.id) || [],
         appreciation: blog.appreciation,
         shareStatement: blog.shareStatement,
@@ -78,7 +73,7 @@ export default function EditBlogPage() {
     e.preventDefault();
     setLoading(true);
     try {
-      await api.adminUpdateBlog(id, { ...form, typeId: Number(form.typeId) });
+      await api.adminUpdateBlog(id, form);
       router.push('/admin/blogs');
     } finally {
       setLoading(false);
@@ -102,22 +97,10 @@ export default function EditBlogPage() {
             className="w-full border rounded-lg px-4 py-2 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
-            <select name="typeId" value={form.typeId} onChange={handleChange}
-              className="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-              <option value={0} disabled>Select category</option>
-              {types.map((type) => (
-                <option key={type.id} value={type.id}>{type.name}</option>
-              ))}
-            </select>
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Cover Image URL</label>
-            <input name="firstPicture" value={form.firstPicture} onChange={handleChange}
-              className="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-          </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Cover Image URL</label>
+          <input name="firstPicture" value={form.firstPicture} onChange={handleChange}
+            className="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
         </div>
 
         <div>

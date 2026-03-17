@@ -48,7 +48,6 @@ export default function Header() {
 function NavLinks() {
   const links = [
     { href: '/', label: 'Home' },
-    { href: '/types', label: 'Categories' },
     { href: '/tags', label: 'Tags' },
     { href: '/archives', label: 'Archives' },
     { href: '/about', label: 'About' },

@@ -4,11 +4,10 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { isLoggedIn } from '@/lib/auth';
 import { api } from '@/lib/api';
-import type { TypeResponse, TagResponse, BlogRequest } from '@/types';
+import type { TagResponse, BlogRequest } from '@/types';
 
 export default function NewBlogPage() {
   const router = useRouter();
-  const [types, setTypes] = useState<TypeResponse[]>([]);
   const [tags, setTags] = useState<TagResponse[]>([]);
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState<BlogRequest>({
@@ -17,7 +16,6 @@ export default function NewBlogPage() {
     firstPicture: '',
     flag: '',
     description: '',
-    typeId: 0,
     tagIds: [],
     appreciation: false,
     shareStatement: false,
@@ -28,7 +26,6 @@ export default function NewBlogPage() {
 
   useEffect(() => {
     if (!isLoggedIn()) { router.push('/admin/login'); return; }
-    api.getTypes().then(setTypes);
     api.getTags().then(setTags);
   }, [router]);
 
@@ -55,7 +52,7 @@ export default function NewBlogPage() {
     e.preventDefault();
     setLoading(true);
     try {
-      await api.adminCreateBlog({ ...form, typeId: Number(form.typeId) });
+      await api.adminCreateBlog(form);
       router.push('/admin/blogs');
     } finally {
       setLoading(false);
@@ -90,31 +87,14 @@ export default function NewBlogPage() {
           />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
-            <select
-              name="typeId"
-              value={form.typeId}
-              onChange={handleChange}
-              className="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              required
-            >
-              <option value={0} disabled>Select category</option>
-              {types.map((type) => (
-                <option key={type.id} value={type.id}>{type.name}</option>
-              ))}
-            </select>
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Cover Image URL</label>
-            <input
-              name="firstPicture"
-              value={form.firstPicture}
-              onChange={handleChange}
-              className="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Cover Image URL</label>
+          <input
+            name="firstPicture"
+            value={form.firstPicture}
+            onChange={handleChange}
+            className="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
         </div>
 
         <div>
