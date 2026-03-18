@@ -45,4 +45,6 @@ springdoc:
 
 logging:
   level:
-    com.yao.blog: INFO
+    com.yao.blog: DEBUG
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG
