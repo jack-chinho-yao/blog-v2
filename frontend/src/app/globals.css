@@ -2,19 +2,141 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* === Backgrounds === */
+  --bg-crust: #11111b;
+  --bg-mantle: #181825;
+  --bg-base: #1e1e2e;
+  --bg-surface-0: #313244;
+  --bg-surface-1: #45475a;
+  --bg-surface-2: #585b70;
+
+  /* === Text === */
+  --text: #cdd6f4;
+  --text-subtext-1: #bac2de;
+  --text-subtext-0: #a6adc8;
+  --text-overlay-1: #7f849c;
+  --text-overlay-0: #6c7086;
+
+  /* === Accent === */
+  --accent: #cba6f7;
+  --accent-secondary: #b4befe;
+  --accent-pink: #f5c2e7;
+
+  /* === Semantic (renamed to avoid Tailwind palette collision) === */
+  --semantic-red: #f38ba8;
+  --semantic-peach: #fab387;
+  --semantic-yellow: #f9e2af;
+  --semantic-green: #a6e3a1;
+  --semantic-blue: #89b4fa;
+  --semantic-teal: #94e2d5;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-base: var(--bg-base);
+  --color-mantle: var(--bg-mantle);
+  --color-crust: var(--bg-crust);
+  --color-surface-0: var(--bg-surface-0);
+  --color-surface-1: var(--bg-surface-1);
+  --color-surface-2: var(--bg-surface-2);
+
+  --color-fg: var(--text);
+  --color-subtext-1: var(--text-subtext-1);
+  --color-subtext-0: var(--text-subtext-0);
+  --color-overlay-1: var(--text-overlay-1);
+  --color-overlay-0: var(--text-overlay-0);
+
+  --color-mauve: var(--accent);
+  --color-lavender: var(--accent-secondary);
+  --color-pink: var(--accent-pink);
+
+  --color-ctp-red: var(--semantic-red);
+  --color-ctp-peach: var(--semantic-peach);
+  --color-ctp-yellow: var(--semantic-yellow);
+  --color-ctp-green: var(--semantic-green);
+  --color-ctp-blue: var(--semantic-blue);
+  --color-ctp-teal: var(--semantic-teal);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
+html {
+  background: var(--bg-base);
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--bg-base);
+  color: var(--text);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg-base);
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg-surface-1);
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--bg-surface-2);
+}
+
+/* Catppuccin Mocha override for @tailwindcss/typography */
+.prose {
+  --tw-prose-body: var(--text);
+  --tw-prose-headings: var(--text);
+  --tw-prose-lead: var(--text-subtext-1);
+  --tw-prose-links: var(--accent);
+  --tw-prose-bold: var(--text);
+  --tw-prose-counters: var(--text-overlay-1);
+  --tw-prose-bullets: var(--text-overlay-1);
+  --tw-prose-hr: var(--bg-surface-1);
+  --tw-prose-quotes: var(--text-subtext-1);
+  --tw-prose-quote-borders: var(--accent);
+  --tw-prose-captions: var(--text-overlay-1);
+  --tw-prose-kbd: var(--text);
+  --tw-prose-kbd-shadows: var(--bg-surface-1);
+  --tw-prose-code: var(--accent-pink);
+  --tw-prose-pre-code: var(--text);
+  --tw-prose-pre-bg: var(--bg-mantle);
+  --tw-prose-th-borders: var(--bg-surface-1);
+  --tw-prose-td-borders: var(--bg-surface-1);
+}
+
+.prose code {
+  background: var(--bg-surface-0);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  font-weight: normal;
+}
+.prose code::before,
+.prose code::after {
+  content: "";
+}
+.prose pre {
+  background: var(--bg-mantle);
+  border: 1px solid var(--bg-surface-1);
+}
+.prose blockquote {
+  background: rgba(49, 50, 68, 0.4);
+  border-left: 4px solid var(--accent);
+  padding: 0.5rem 1rem;
+  border-radius: 0 4px 4px 0;
+  font-style: normal;
+}
+.prose a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.prose a:hover {
+  color: var(--accent-secondary);
 }

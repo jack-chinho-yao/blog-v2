@@ -29,8 +29,8 @@ export default async function BlogPage({ params }: { params: Promise<{ id: strin
             className="w-full h-64 object-cover rounded-lg mb-6"
           />
         )}
-        <h1 className="text-4xl font-bold text-gray-800 mb-4">{blog.title}</h1>
-        <div className="flex items-center gap-4 text-sm text-gray-500">
+        <h1 className="text-4xl font-bold text-fg mb-4">{blog.title}</h1>
+        <div className="flex items-center gap-4 text-sm text-overlay-1">
           <span>{blog.user?.nickname}</span>
           <span>{new Date(blog.createdAt).toLocaleDateString()}</span>
           <span>{blog.views} views</span>
@@ -38,7 +38,7 @@ export default async function BlogPage({ params }: { params: Promise<{ id: strin
         {blog.tags?.length > 0 && (
           <div className="flex gap-2 mt-3">
             {blog.tags.map((tag) => (
-              <span key={tag.id} className="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded">
+              <span key={tag.id} className="bg-surface-0 text-lavender text-xs px-2 py-1 rounded">
                 {tag.name}
               </span>
             ))}
@@ -54,7 +54,7 @@ export default async function BlogPage({ params }: { params: Promise<{ id: strin
 
       {/* Share statement */}
       {blog.shareStatement && (
-        <div className="mt-8 p-4 bg-yellow-50 border-l-4 border-yellow-400 text-sm text-gray-600">
+        <div className="mt-8 p-4 bg-surface-0 border-l-4 border-ctp-yellow text-sm text-subtext-1 rounded-r">
           Please include the original link when sharing this article.
         </div>
       )}

@@ -7,7 +7,7 @@ interface BlogCardProps {
 
 export default function BlogCard({ blog }: BlogCardProps) {
   return (
-    <article className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+    <article className="bg-mantle border border-surface-1 rounded-lg overflow-hidden hover:border-mauve transition shadow-[0_0_20px_rgba(203,166,247,0)] hover:shadow-[0_0_20px_rgba(203,166,247,0.15)]">
       {blog.firstPicture && (
         <Link href={`/blog/${blog.id}`}>
           <img
@@ -23,7 +23,7 @@ export default function BlogCard({ blog }: BlogCardProps) {
             <Link
               key={tag.id}
               href={`/tags?id=${tag.id}`}
-              className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded"
+              className="text-xs bg-surface-0 text-lavender px-2 py-1 rounded hover:bg-surface-1 transition"
             >
               {tag.name}
             </Link>
@@ -31,16 +31,16 @@ export default function BlogCard({ blog }: BlogCardProps) {
         </div>
 
         <Link href={`/blog/${blog.id}`}>
-          <h2 className="text-xl font-semibold text-gray-800 hover:text-blue-600 transition mb-2">
+          <h2 className="text-xl font-semibold text-fg hover:text-mauve transition mb-2">
             {blog.title}
           </h2>
         </Link>
 
-        <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+        <p className="text-subtext-0 text-sm mb-4 line-clamp-3">
           {blog.description}
         </p>
 
-        <div className="flex items-center justify-between text-sm text-gray-500">
+        <div className="flex items-center justify-between text-sm text-overlay-1">
           <div className="flex items-center gap-4">
             <span>{blog.user?.nickname}</span>
             <span>{new Date(blog.createdAt).toLocaleDateString()}</span>

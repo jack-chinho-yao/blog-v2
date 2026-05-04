@@ -7,15 +7,15 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
+    <header className="bg-mantle border-b border-surface-1 sticky top-0 z-50">
       <nav className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-        <Link href="/" className="text-2xl font-bold text-gray-800 hover:text-blue-600 transition">
+        <Link href="/" className="text-2xl font-bold text-fg hover:text-mauve transition">
           Jack&apos;s Blog
         </Link>
 
         {/* Mobile menu button */}
         <button
-          className="md:hidden text-gray-600"
+          className="md:hidden text-subtext-0 hover:text-mauve"
           onClick={() => setMenuOpen(!menuOpen)}
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -34,7 +34,7 @@ export default function Header() {
 
         {/* Mobile nav */}
         {menuOpen && (
-          <div className="absolute top-full left-0 right-0 bg-white shadow-lg md:hidden">
+          <div className="absolute top-full left-0 right-0 bg-mantle border-b border-surface-1 md:hidden">
             <div className="flex flex-col px-4 py-2 space-y-2">
               <NavLinks />
             </div>
@@ -59,7 +59,7 @@ function NavLinks() {
         <Link
           key={link.href}
           href={link.href}
-          className="text-gray-600 hover:text-blue-600 transition font-medium py-2 md:py-0"
+          className="text-subtext-0 hover:text-mauve transition font-medium py-2 md:py-0"
         >
           {link.label}
         </Link>

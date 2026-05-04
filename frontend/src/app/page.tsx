@@ -38,13 +38,13 @@ export default async function HomePage() {
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
         {/* Main content */}
         <div className="lg:col-span-3">
-          <h1 className="text-3xl font-bold text-gray-800 mb-8">Latest Posts</h1>
+          <h1 className="text-3xl font-bold text-fg mb-8">Latest Posts</h1>
           <div className="space-y-6">
             {blogPage.content.map((blog) => (
               <BlogCard key={blog.id} blog={blog} />
             ))}
             {blogPage.content.length === 0 && (
-              <p className="text-gray-500 text-center py-12">No posts yet.</p>
+              <p className="text-overlay-1 text-center py-12">No posts yet.</p>
             )}
           </div>
         </div>
@@ -52,14 +52,14 @@ export default async function HomePage() {
         {/* Sidebar */}
         <aside className="space-y-8">
           {/* Tags */}
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Tags</h3>
+          <div className="bg-mantle border border-surface-1 rounded-lg p-6">
+            <h3 className="text-lg font-semibold text-fg mb-4">Tags</h3>
             <div className="flex flex-wrap gap-2">
               {tags.map((tag) => (
                 <Link
                   key={tag.id}
                   href={`/tags?id=${tag.id}`}
-                  className="bg-gray-100 text-gray-600 text-sm px-3 py-1 rounded-full hover:bg-blue-100 hover:text-blue-600 transition"
+                  className="bg-surface-0 text-lavender text-sm px-3 py-1 rounded-full hover:bg-surface-1 hover:text-mauve transition"
                 >
                   {tag.name}
                 </Link>
@@ -68,14 +68,14 @@ export default async function HomePage() {
           </div>
 
           {/* Recommended */}
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Recommended</h3>
+          <div className="bg-mantle border border-surface-1 rounded-lg p-6">
+            <h3 className="text-lg font-semibold text-fg mb-4">Recommended</h3>
             <div className="space-y-3">
               {recommendBlogs.map((blog) => (
                 <Link
                   key={blog.id}
                   href={`/blog/${blog.id}`}
-                  className="block text-gray-600 hover:text-blue-600 transition text-sm"
+                  className="block text-subtext-0 hover:text-mauve transition text-sm"
                 >
                   {blog.title}
                 </Link>

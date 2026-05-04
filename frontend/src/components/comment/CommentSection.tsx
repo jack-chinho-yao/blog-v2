@@ -48,14 +48,14 @@ export default function CommentSection({ blogId }: CommentSectionProps) {
 
   return (
     <div className="mt-12">
-      <h3 className="text-2xl font-bold text-gray-800 mb-6">Comments</h3>
+      <h3 className="text-2xl font-bold text-fg mb-6">Comments</h3>
 
       {/* Comment form */}
-      <form onSubmit={handleSubmit} className="bg-gray-50 rounded-lg p-6 mb-8">
+      <form onSubmit={handleSubmit} className="bg-mantle border border-surface-1 rounded-lg p-6 mb-8">
         {replyTo && (
-          <div className="mb-3 text-sm text-blue-600">
+          <div className="mb-3 text-sm text-mauve">
             Replying to comment...
-            <button onClick={() => setReplyTo(null)} className="ml-2 text-red-500">Cancel</button>
+            <button onClick={() => setReplyTo(null)} className="ml-2 text-ctp-red">Cancel</button>
           </div>
         )}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
@@ -64,7 +64,7 @@ export default function CommentSection({ blogId }: CommentSectionProps) {
             placeholder="Nickname *"
             value={nickname}
             onChange={(e) => setNickname(e.target.value)}
-            className="border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="bg-surface-0 border border-surface-1 text-fg placeholder:text-overlay-0 rounded-lg px-4 py-2 focus:outline-none focus:border-mauve"
             required
           />
           <input
@@ -72,7 +72,7 @@ export default function CommentSection({ blogId }: CommentSectionProps) {
             placeholder="Email (optional)"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="bg-surface-0 border border-surface-1 text-fg placeholder:text-overlay-0 rounded-lg px-4 py-2 focus:outline-none focus:border-mauve"
           />
         </div>
         <textarea
@@ -80,13 +80,13 @@ export default function CommentSection({ blogId }: CommentSectionProps) {
           value={content}
           onChange={(e) => setContent(e.target.value)}
           rows={4}
-          className="w-full border rounded-lg px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full bg-surface-0 border border-surface-1 text-fg placeholder:text-overlay-0 rounded-lg px-4 py-2 mb-4 focus:outline-none focus:border-mauve"
           required
         />
         <button
           type="submit"
           disabled={loading}
-          className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition disabled:opacity-50"
+          className="bg-mauve text-base font-semibold px-6 py-2 rounded-lg hover:bg-lavender transition disabled:opacity-50"
         >
           {loading ? 'Submitting...' : 'Submit'}
         </button>
@@ -102,7 +102,7 @@ export default function CommentSection({ blogId }: CommentSectionProps) {
           />
         ))}
         {comments.length === 0 && (
-          <p className="text-gray-500 text-center py-8">No comments yet. Be the first!</p>
+          <p className="text-overlay-1 text-center py-8">No comments yet. Be the first!</p>
         )}
       </div>
     </div>
@@ -111,20 +111,20 @@ export default function CommentSection({ blogId }: CommentSectionProps) {
 
 function CommentItem({ comment, onReply }: { comment: CommentResponse; onReply: (id: number) => void }) {
   return (
-    <div className="border-l-2 border-gray-200 pl-4">
+    <div className="border-l-2 border-surface-1 pl-4">
       <div className="flex items-center gap-3 mb-2">
-        <span className={`font-semibold ${comment.adminComment ? 'text-blue-600' : 'text-gray-800'}`}>
+        <span className={`font-semibold ${comment.adminComment ? 'text-mauve' : 'text-fg'}`}>
           {comment.nickname}
-          {comment.adminComment && <span className="ml-1 text-xs bg-blue-100 text-blue-600 px-1.5 py-0.5 rounded">Admin</span>}
+          {comment.adminComment && <span className="ml-1 text-xs bg-surface-0 text-mauve px-1.5 py-0.5 rounded">Admin</span>}
         </span>
-        <span className="text-xs text-gray-400">
+        <span className="text-xs text-overlay-0">
           {new Date(comment.createdAt).toLocaleString()}
         </span>
       </div>
-      <p className="text-gray-700 mb-2">{comment.content}</p>
+      <p className="text-subtext-1 mb-2">{comment.content}</p>
       <button
         onClick={() => onReply(comment.id)}
-        className="text-sm text-blue-500 hover:text-blue-700"
+        className="text-sm text-mauve hover:text-lavender"
       >
         Reply
       </button>

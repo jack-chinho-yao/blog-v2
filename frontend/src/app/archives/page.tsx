@@ -22,24 +22,24 @@ export default async function ArchivesPage() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-gray-800 mb-2">Archives</h1>
-      <p className="text-gray-500 mb-8">Total {count} posts</p>
+      <h1 className="text-3xl font-bold text-fg mb-2">Archives</h1>
+      <p className="text-overlay-1 mb-8">Total {count} posts</p>
 
       <div className="space-y-8">
         {archives.map((archive) => (
           <div key={archive.year}>
-            <h2 className="text-2xl font-bold text-gray-700 mb-4 border-b pb-2">
+            <h2 className="text-2xl font-bold text-mauve mb-4 border-b border-surface-1 pb-2">
               {archive.year}
             </h2>
             <ul className="space-y-3">
               {archive.blogs.map((blog) => (
                 <li key={blog.id} className="flex items-center gap-4">
-                  <span className="text-sm text-gray-400 w-24 shrink-0">
+                  <span className="text-sm text-overlay-1 w-24 shrink-0">
                     {new Date(blog.createdAt).toLocaleDateString()}
                   </span>
                   <Link
                     href={`/blog/${blog.id}`}
-                    className="text-gray-700 hover:text-blue-600 transition"
+                    className="text-subtext-1 hover:text-mauve transition"
                   >
                     {blog.title}
                   </Link>

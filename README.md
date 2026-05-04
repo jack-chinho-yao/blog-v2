@@ -43,7 +43,7 @@ blog-v2/
 - **Authentication** — JWT + refresh token, BCrypt password hashing
 - **Role-based Access** — ADMIN, AUTHOR, READER roles with `@PreAuthorize`
 - **Auditing** — Auto-tracked createdAt/updatedAt/createdBy/updatedBy on all entities
-- **Soft Delete** — Records are never permanently deleted
+- **Soft Delete** — Records are never很ermanently deleted
 - **SSR** — Server-side rendering for public pages (SEO friendly)
 - **API Documentation** — Swagger UI at `/swagger-ui.html`
 

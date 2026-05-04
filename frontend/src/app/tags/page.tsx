@@ -26,7 +26,7 @@ function TagsContent() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-gray-800 mb-8">Tags</h1>
+      <h1 className="text-3xl font-bold text-fg mb-8">Tags</h1>
 
       <div className="flex flex-wrap gap-2 mb-8">
         {tags.map((tag) => (
@@ -35,8 +35,8 @@ function TagsContent() {
             onClick={() => setActiveTag(tag.id)}
             className={`px-3 py-1 rounded-full text-sm transition ${
               activeTag === tag.id
-                ? 'bg-blue-600 text-white'
-                : 'bg-gray-100 text-gray-600 hover:bg-blue-100 hover:text-blue-600'
+                ? 'bg-mauve text-base font-semibold'
+                : 'bg-surface-0 text-lavender hover:bg-surface-1 hover:text-mauve'
             }`}
           >
             {tag.name} ({tag.blogCount})
@@ -49,10 +49,10 @@ function TagsContent() {
           <BlogCard key={blog.id} blog={blog} />
         ))}
         {activeTag && blogs?.content.length === 0 && (
-          <p className="text-gray-500 text-center py-12">No posts with this tag.</p>
+          <p className="text-overlay-1 text-center py-12">No posts with this tag.</p>
         )}
         {!activeTag && (
-          <p className="text-gray-500 text-center py-12">Select a tag to view posts.</p>
+          <p className="text-overlay-1 text-center py-12">Select a tag to view posts.</p>
         )}
       </div>
     </div>

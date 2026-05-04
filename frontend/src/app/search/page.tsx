@@ -25,7 +25,7 @@ export default function SearchPage() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-gray-800 mb-8">Search</h1>
+      <h1 className="text-3xl font-bold text-fg mb-8">Search</h1>
 
       <form onSubmit={handleSearch} className="flex gap-4 mb-8">
         <input
@@ -33,12 +33,12 @@ export default function SearchPage() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search posts..."
-          className="flex-1 border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="flex-1 bg-surface-0 border border-surface-1 text-fg placeholder:text-overlay-0 rounded-lg px-4 py-3 focus:outline-none focus:border-mauve"
         />
         <button
           type="submit"
           disabled={loading}
-          className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition disabled:opacity-50"
+          className="bg-mauve text-base font-semibold px-6 py-3 rounded-lg hover:bg-lavender transition disabled:opacity-50"
         >
           {loading ? 'Searching...' : 'Search'}
         </button>
@@ -46,7 +46,7 @@ export default function SearchPage() {
 
       {results && (
         <>
-          <p className="text-gray-500 mb-6">
+          <p className="text-overlay-1 mb-6">
             Found {results.totalElements} result(s) for &quot;{query}&quot;
           </p>
           <div className="space-y-6">

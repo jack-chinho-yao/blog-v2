@@ -1,9 +1,9 @@
 export default function AboutPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-gray-800 mb-8">About Me</h1>
+      <h1 className="text-3xl font-bold text-fg mb-8">About Me</h1>
 
-      <div className="bg-white rounded-lg shadow-md p-8">
+      <div className="bg-mantle border border-surface-1 rounded-lg p-8">
         <div className="prose prose-lg max-w-none">
           <p>
             Hi, I&apos;m <strong>Jack Yao</strong>, a software developer based in Calgary, Alberta.
