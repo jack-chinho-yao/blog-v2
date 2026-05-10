@@ -82,40 +82,40 @@ export default function EditBlogPage() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-gray-800 mb-8">Edit Post</h1>
+      <h1 className="text-3xl font-bold text-fg mb-8">Edit Post</h1>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
+          <label className="block text-sm font-medium text-subtext-1 mb-1">Title</label>
           <input name="title" value={form.title} onChange={handleChange}
-            className="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required />
+            className="w-full bg-surface-0 border border-surface-1 text-fg placeholder:text-overlay-0 rounded-lg px-4 py-2 focus:outline-none focus:border-mauve" required />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Content (Markdown)</label>
+          <label className="block text-sm font-medium text-subtext-1 mb-1">Content (Markdown)</label>
           <textarea name="content" value={form.content} onChange={handleChange} rows={15}
-            className="w-full border rounded-lg px-4 py-2 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required />
+            className="w-full bg-surface-0 border border-surface-1 text-fg placeholder:text-overlay-0 rounded-lg px-4 py-2 font-mono text-sm focus:outline-none focus:border-mauve" required />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Cover Image URL</label>
+          <label className="block text-sm font-medium text-subtext-1 mb-1">Cover Image URL</label>
           <input name="firstPicture" value={form.firstPicture} onChange={handleChange}
-            className="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            className="w-full bg-surface-0 border border-surface-1 text-fg placeholder:text-overlay-0 rounded-lg px-4 py-2 focus:outline-none focus:border-mauve" />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+          <label className="block text-sm font-medium text-subtext-1 mb-1">Description</label>
           <textarea name="description" value={form.description} onChange={handleChange} rows={3}
-            className="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            className="w-full bg-surface-0 border border-surface-1 text-fg placeholder:text-overlay-0 rounded-lg px-4 py-2 focus:outline-none focus:border-mauve" />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Tags</label>
+          <label className="block text-sm font-medium text-subtext-1 mb-2">Tags</label>
           <div className="flex flex-wrap gap-2">
             {tags.map((tag) => (
               <button key={tag.id} type="button" onClick={() => handleTagToggle(tag.id)}
                 className={`px-3 py-1 rounded-full text-sm transition ${
-                  form.tagIds?.includes(tag.id) ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                  form.tagIds?.includes(tag.id) ? 'bg-mauve text-crust font-semibold' : 'bg-surface-0 text-lavender hover:bg-surface-1'
                 }`}>
                 {tag.name}
               </button>
@@ -133,19 +133,19 @@ export default function EditBlogPage() {
           ].map(({ name, label }) => (
             <label key={name} className="flex items-center gap-2 cursor-pointer">
               <input type="checkbox" name={name} checked={form[name as keyof BlogRequest] as boolean}
-                onChange={handleChange} className="rounded text-blue-600" />
-              <span className="text-sm text-gray-700">{label}</span>
+                onChange={handleChange} className="rounded accent-mauve" />
+              <span className="text-sm text-subtext-1">{label}</span>
             </label>
           ))}
         </div>
 
         <div className="flex gap-4">
           <button type="submit" disabled={loading}
-            className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition disabled:opacity-50">
+            className="bg-mauve text-crust font-semibold px-6 py-2 rounded-lg hover:bg-lavender transition disabled:opacity-50">
             {loading ? 'Saving...' : 'Save'}
           </button>
           <button type="button" onClick={() => router.back()}
-            className="border px-6 py-2 rounded-lg hover:bg-gray-50 transition">
+            className="border border-surface-1 text-fg px-6 py-2 rounded-lg hover:bg-surface-0 transition">
             Cancel
           </button>
         </div>

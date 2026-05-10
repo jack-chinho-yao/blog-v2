@@ -46,21 +46,21 @@ export default function AdminTagsPage() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-gray-800 mb-8">Manage Tags</h1>
+      <h1 className="text-3xl font-bold text-fg mb-8">Manage Tags</h1>
 
       <form onSubmit={handleCreate} className="flex gap-4 mb-8">
         <input
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="New tag name"
-          className="flex-1 border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="flex-1 bg-surface-0 border border-surface-1 text-fg placeholder:text-overlay-0 rounded-lg px-4 py-2 focus:outline-none focus:border-mauve"
         />
-        <button type="submit" className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
+        <button type="submit" className="bg-mauve text-crust font-semibold px-6 py-2 rounded-lg hover:bg-lavender transition">
           Add
         </button>
       </form>
 
-      <div className="bg-white rounded-lg shadow-md divide-y">
+      <div className="bg-surface-0 border border-surface-1 rounded-lg divide-y divide-surface-1">
         {tags.map((tag) => (
           <div key={tag.id} className="flex items-center justify-between px-6 py-4">
             {editId === tag.id ? (
@@ -68,23 +68,23 @@ export default function AdminTagsPage() {
                 <input
                   value={editName}
                   onChange={(e) => setEditName(e.target.value)}
-                  className="flex-1 border rounded px-3 py-1"
+                  className="flex-1 bg-mantle border border-surface-1 text-fg rounded px-3 py-1 focus:outline-none focus:border-mauve"
                   autoFocus
                 />
-                <button onClick={() => handleUpdate(tag.id)} className="text-green-600 hover:text-green-800">Save</button>
-                <button onClick={() => setEditId(null)} className="text-gray-500">Cancel</button>
+                <button onClick={() => handleUpdate(tag.id)} className="text-ctp-green hover:text-ctp-teal">Save</button>
+                <button onClick={() => setEditId(null)} className="text-overlay-1 hover:text-fg">Cancel</button>
               </div>
             ) : (
               <>
                 <div>
-                  <span className="text-gray-800 font-medium">{tag.name}</span>
-                  <span className="text-gray-400 text-sm ml-2">({tag.blogCount} posts)</span>
+                  <span className="text-fg font-medium">{tag.name}</span>
+                  <span className="text-overlay-0 text-sm ml-2">({tag.blogCount} posts)</span>
                 </div>
                 <div className="space-x-3">
                   <button onClick={() => { setEditId(tag.id); setEditName(tag.name); }}
-                    className="text-blue-600 hover:text-blue-800 text-sm">Edit</button>
+                    className="text-mauve hover:text-lavender text-sm">Edit</button>
                   <button onClick={() => handleDelete(tag.id)}
-                    className="text-red-600 hover:text-red-800 text-sm">Delete</button>
+                    className="text-ctp-red hover:text-ctp-peach text-sm">Delete</button>
                 </div>
               </>
             )}
